@@ -1,7 +1,9 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Image } from 'react-native';
+import PropTypes from 'prop-types';
+import FastImage from 'react-native-fast-image'
 
 import ViewTransformer from 'react-native-view-transformer';
 
@@ -22,7 +24,6 @@ export default class TransformableImage extends Component {
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
     enableTranslate: PropTypes.bool,
-    onSingleTapConfirmed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
     onViewTransformed: PropTypes.func
   };
@@ -94,12 +95,11 @@ export default class TransformableImage extends Component {
         enableResistance={true}
         onTransformGestureReleased={this.props.onTransformGestureReleased}
         onViewTransformed={this.props.onViewTransformed}
-        onSingleTapConfirmed={this.props.onSingleTapConfirmed}
         maxScale={maxScale}
         contentAspectRatio={contentAspectRatio}
         onLayout={this.onLayout.bind(this)}
         style={this.props.style}>
-        <Image
+        <FastImage
           {...this.props}
           style={[this.props.style, {backgroundColor: 'transparent'}]}
           resizeMode={'contain'}
